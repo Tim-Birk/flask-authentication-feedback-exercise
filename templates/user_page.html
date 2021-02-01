@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block title %} User Detail {% endblock %} {% block content %}
+
+<div class="row mt-4">
+    <div class="col-sm-8 col-md-9">
+        <div class="row d-flex flex-column ml-2">
+            <ul>
+                <li>Username: {{user.username}}</li>
+                <li>Name: {{user.get_full_name()}}</li>
+                <li>Email: {{user.email}}</li>
+            </ul>
+        </div>
+        <div class="d-flex">
+            <a href="/users/{{user.username}}/feedback/add" class="btn btn-sm btn-primary mb-2">Add Feedback</a>
+            <form action="/users/{{user.username}}/delete" class="ml-2" method="POST">
+                <button class="btn btn-sm btn-danger mb-2">Delete Account</button>
+            </form>
+        </div>
+    </div>
+
+    {% for fb in user.feedback %}
+
+    <div class="card w-100 mb-2 mx-2">
+        <div class="card-body">
+            <div class="d-flex justify-content-between">
+                <h5 class="card-title">{{fb.title}}</h5>
+                <div>
+                    <div class="d-flex">
+                        <a href="/feedback/{{fb.id}}/update"><i class="fas fa-edit text-primary"></i></a>
+                        <form action="/feedback/{{fb.id}}/delete" class="ml-2" method="POST">
+                            <button class='delete-button'><i class="fas fa-trash-alt text-danger"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <p class="card-text">{{fb.content}}</p>
+
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+{% endblock %}
