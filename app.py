@@ -91,7 +91,7 @@ def login_user():
 
 @app.route('/logout')
 def logout_user():
-"""Log user out by removing them from the session"""
+    """Log user out by removing them from the session"""
     session.pop('username')
     flash("You are logged out.", "success")
     return redirect('/')
