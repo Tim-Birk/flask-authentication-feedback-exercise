@@ -90,8 +90,8 @@ def login_user():
     return render_template('login.html', form=form)
 
 @app.route('/logout')
-"""Log user out by removing them from the session"""
 def logout_user():
+"""Log user out by removing them from the session"""
     session.pop('username')
     flash("You are logged out.", "success")
     return redirect('/')
